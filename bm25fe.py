@@ -1,3 +1,5 @@
+# the class to compute the bm25fe score of a query-document pair.
+
 import numpy as np
 
 class bm25fe():
@@ -22,8 +24,14 @@ class bm25fe():
         self.q_W = q_W
         
         self.fields = len(d_B)
-        
-        
+    
+    
+    # the function to compute bm25fe score
+    # idf: inverse document frequency of words
+    # avgfl: average field length
+    # document: a document matrix, with every row a field of the documnet
+    # query: a query matrix, with every row a field of the query
+    
     def score(self, idf, avgfl, doc, query):
         
         idf = np.array(idf)
@@ -39,6 +47,8 @@ class bm25fe():
         
         return (idf*(self.K1+1)*doc_n/(self.K1+doc_n)*(self.K3+1)*query_n/(self.K3+query_n)).sum()
     
+    
+    # the function to compute the bm25fe score's derivatives with respect to the parameters
     
     def derivative(self, idf, avgfl, doc, query):
         

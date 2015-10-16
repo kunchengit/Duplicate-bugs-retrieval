@@ -10,6 +10,12 @@ from gensim import corpora
 from gensim import matutils
 from gensim.models import ldamulticore
 
+# query_list: a list of bugs for whom we want to retrieve similar bugs
+# length_list: the length of the similar-bug-list for each query bug
+# dictionary_address: the address of the file which stores the dictionary
+# topicmodel_address: the address of the file which stores the pre-trained topic model
+# rankmodel_address: the address of the file which stores the pre-trained LambdaMART model
+
 def retrieve_similar_bugs(query_list, length_list, dictionary_address, topicmodel_address, rankmodel_address):
     
     conn = MySQLdb.connect(host='10.117.8.41', port=3306, user='root', passwd='vmware', db='bugfeature')
@@ -125,7 +131,7 @@ def retrieve_similar_bugs(query_list, length_list, dictionary_address, topicmode
     
         ranklist = []
         i = 0
-        while len(ranklist) < int(length_list[idx]):
+        while len(ranklist) < length_list[idx]:
             # print bugs_ranked.iloc[i]['bug_id']
             if bugs_ranked.index[i] != key:
                 child = False

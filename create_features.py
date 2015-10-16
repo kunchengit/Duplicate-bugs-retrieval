@@ -1,3 +1,5 @@
+# This is the most original file to extract features from bugs. Not used in the final system.
+
 import MySQLdb
 import numpy
 import pandas

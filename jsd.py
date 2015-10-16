@@ -1,3 +1,5 @@
+# compute the Jensen-Shannon Divergence of two vectors
+
 from scipy.stats import entropy
 from numpy.linalg import norm
 import numpy as np
